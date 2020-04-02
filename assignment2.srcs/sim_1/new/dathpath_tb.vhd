@@ -53,22 +53,22 @@ architecture Behavioral of dathpath_tb is
 --           H : in std_logic_vector(1 downto 0);
            
            --registerFile
-           srcA : in std_logic_vector(2 downto 0);
-           srcB : in std_logic_vector(2 downto 0);
+           Aaddr : in std_logic_vector(2 downto 0);
+           Baddr : in std_logic_vector(2 downto 0);
            dest : in std_logic_vector(2 downto 0);
-           write : in std_logic;
-           Clk : in std_logic;
+           enable : in std_logic;
+           Clock : in std_logic;
 --           data_src : in std_logic;
 --           data : in std_logic_vector(15 downto 0);
            
-            reg0 : out std_logic_vector(15 downto 0);
-            reg1 : out std_logic_vector(15 downto 0);
-            reg2 : out std_logic_vector(15 downto 0);
-            reg3 : out std_logic_vector(15 downto 0);
-            reg4 : out std_logic_vector(15 downto 0);
-            reg5 : out std_logic_vector(15 downto 0);
-            reg6 : out std_logic_vector(15 downto 0);
-            reg7 : out std_logic_vector(15 downto 0);
+            r0 : out std_logic_vector(15 downto 0);
+            r1 : out std_logic_vector(15 downto 0);
+            r2 : out std_logic_vector(15 downto 0);
+            r3 : out std_logic_vector(15 downto 0);
+            r4 : out std_logic_vector(15 downto 0);
+            r5 : out std_logic_vector(15 downto 0);
+            r6 : out std_logic_vector(15 downto 0);
+            r7 : out std_logic_vector(15 downto 0);
            
            --out
            AdrOutA : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -89,22 +89,22 @@ end component;
 --           signal H :  std_logic_vector(1 downto 0):= (others => '0');
            
            --registerFile
-           signal srcA :  std_logic_vector(2 downto 0):= (others => '0');
-           signal srcB :  std_logic_vector(2 downto 0):= (others => '0');
+           signal Aaddr :  std_logic_vector(2 downto 0):= (others => '0');
+           signal Baddr :  std_logic_vector(2 downto 0):= (others => '0');
            signal dest :  std_logic_vector(2 downto 0):= (others => '0');
-           signal write :  std_logic:= '0';
-           signal Clk :  std_logic:= '0';
+           signal enable :  std_logic:= '0';
+           signal Clock :  std_logic:= '0';
 --           signal data_src :  std_logic:= '0';
 --           signal data :  std_logic_vector(15 downto 0):= (others => '0');
            
-           signal reg0 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg1 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg2 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg3 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg4 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg5 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg6 :  std_logic_vector(15 downto 0):= (others => '0');
-           signal reg7 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r0 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r1 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r2 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r3 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r4 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r5 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r6 :  std_logic_vector(15 downto 0):= (others => '0');
+           signal r7 :  std_logic_vector(15 downto 0):= (others => '0');
            
            --out
            signal AdrOutA :   STD_LOGIC_VECTOR (15 downto 0):= (others => '0');
@@ -130,22 +130,22 @@ begin
 --           H => H,
            
            --registerFile
-           srcA => srcA,
-           srcB => srcB,
+           Aaddr => Aaddr,
+           Baddr => Baddr,
            dest => dest,
-           write => write,
-           Clk => Clk,
+           enable => enable,
+           Clock => Clock,
 --           data_src => data_src,
 --           data => data,
            
-            reg0 => reg0,
-            reg1 => reg1,
-            reg2 => reg2,
-            reg3 => reg3,
-            reg4 => reg4,
-            reg5 => reg5,
-            reg6 => reg6,
-            reg7 => reg7,
+            r0 => r0,
+            r1 => r1,
+            r2 => r2,
+            r3 => r3,
+            r4 => r4,
+            r5 => r5,
+            r6 => r6,
+            r7 => r7,
            
            --out
            AdrOutA => AdrOutA,
@@ -155,13 +155,13 @@ begin
 
     process begin
         wait for Clk_period;
-          Clk <= not Clk;
+          Clock <= not Clock;
     end process;
 
    stim_proc: process
    begin		
       wait for Clk_period*2;
-      write <= '1';
+      enable <= '1';
       MDsel <= '1';
 	  dest <= "000";
 	  dataIn <= x"0000";

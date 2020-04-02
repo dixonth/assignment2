@@ -45,22 +45,22 @@ Port (     --datapath
 --           H : in std_logic_vector(1 downto 0);
 
            --registerFile
-           srcA : in std_logic_vector(2 downto 0); -------------------
-           srcB : in std_logic_vector(2 downto 0); ----------------------
+           Aaddr : in std_logic_vector(2 downto 0); 
+           Baddr : in std_logic_vector(2 downto 0); 
            dest : in std_logic_vector(2 downto 0);
-           write : in std_logic;
-           Clk : in std_logic; ---------------------------------------------
+           enable : in std_logic;
+           Clock : in std_logic; 
 --           data_src : in std_logic;
 --           data : in std_logic_vector(15 downto 0);
 
-            reg0 : out std_logic_vector(15 downto 0); -------------------------------
-            reg1 : out std_logic_vector(15 downto 0); -------------------------------
-            reg2 : out std_logic_vector(15 downto 0); -------------------------------
-            reg3 : out std_logic_vector(15 downto 0); -------------------------------
-            reg4 : out std_logic_vector(15 downto 0); -------------------------------
-            reg5 : out std_logic_vector(15 downto 0); -------------------------------
-            reg6 : out std_logic_vector(15 downto 0); -------------------------------
-            reg7 : out std_logic_vector(15 downto 0); -------------------------------
+            r0 : out std_logic_vector(15 downto 0); 
+            r1 : out std_logic_vector(15 downto 0); 
+            r2 : out std_logic_vector(15 downto 0);  
+            r3 : out std_logic_vector(15 downto 0);  
+            r4 : out std_logic_vector(15 downto 0);  
+            r5 : out std_logic_vector(15 downto 0);  
+            r6 : out std_logic_vector(15 downto 0); 
+            r7 : out std_logic_vector(15 downto 0); 
 
            --out
            AdrOutA : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -114,7 +114,7 @@ COMPONENT multi2_1 is
                z : out  STD_LOGIC_VECTOR (15 downto 0));
 end COMPONENT multi2_1;
 
-signal Awire, Bwire, Bbus, FUout, result : std_logic_vector(15 downto 0); -------------------------------
+signal Awire, Bwire, Bbus, FUresult, result : std_logic_vector(15 downto 0); -------------------------------
 
 
 begin
@@ -128,31 +128,31 @@ MUXB: multi2_1 PORT MAP(
 
 MUXD: multi2_1 PORT MAP(
         data_src => MDsel,
-        src_reg => FUout,
+        src_reg => FUresult,
         data_in => dataIn,
         z => result
 );
 
 RF: registerFile PORT MAP(
-        srcA => srcA,
-        srcB => srcB,
+        srcA => Aaddr,
+        srcB => Baddr,
         des_A0 => dest(2),
         des_A1 => dest(1),
         des_A2 => dest(0),
-        Clk => Clk,
-        write => write,
+        Clk => Clock,
+        write => enable,
 --        data_src => data_src,
 --        data => data,
         FUout => result,
 
-        reg0 => reg0,
-        reg1 => reg1,
-        reg2 => reg2,
-        reg3 => reg3,
-        reg4 => reg4,
-        reg5 => reg5,
-        reg6 => reg6,
-        reg7 => reg7,
+        reg0 => r0,
+        reg1 => r1,
+        reg2 => r2,
+        reg3 => r3,
+        reg4 => r4,
+        reg5 => r5,
+        reg6 => r6,
+        reg7 => r7,
         Adata => Awire,
         Bdata => Bwire
 );
@@ -163,7 +163,7 @@ FU: functionalUnit PORT MAP(
         Gsel => FS(3 downto 0),
         MF => FS(4),
         H => FS(3 downto 2),
-        F => FUout,
+        F => FUresult,
         Cout => C
 );
 
