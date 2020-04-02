@@ -48,7 +48,7 @@ architecture Behavioral of multiplexer is
 
 begin
 
-   process ( src,in1,in2,in3,in4)
+   process ( src,in0,in1,in2,in3,in4,in5,in6,in7)
 		begin
 		case  src is
 			when "000" => z <= in0;

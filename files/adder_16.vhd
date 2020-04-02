@@ -34,7 +34,7 @@ component full_adder
 port(x, y, z : in std_logic;
 s, c : out std_logic);
 end component;
-signal C: std_logic_vector(3 downto 1);
+signal C: std_logic_vector(15 downto 1);
 begin
 Bit0: full_adder
 port map (B(0), A(0), C0, S(0), C(1));
