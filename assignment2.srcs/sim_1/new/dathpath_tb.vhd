@@ -160,67 +160,53 @@ begin
 
    stim_proc: process
    begin		
-      wait for Clk_period*4;
-      
+      wait for Clk_period*2;
       write <= '1';
       MDsel <= '1';
-      
 	  dest <= "000";
-	  dataIn <= x"9999";
+	  dataIn <= x"0000";
 	  
-	  wait for Clk_period*4;
+	  wait for Clk_period*2;
       dest <= "001";
 	  dataIn <= x"1111";
 	  
-	  wait for Clk_period*4;
+	  wait for Clk_period*2;
+	  dest <= "010";
+	  dataIn <= x"2222";
 	  
---	  dest <= "000";
---	  dataIn <= x"2222";
-
+	  wait for Clk_period*2;
       FS <= "00001";
 	  MDsel <= '0';
 	  dest <= "000";
 	  
 	  wait for Clk_period*2;
-	  
 	  MDsel <= '1';
 	  dest <= "011";
 	  dataIn <= x"3333";
 	  
-	  wait for Clk_period*4;
-	  
+	  wait for Clk_period*2;
 	  dest <= "100";
 	  dataIn <= x"4444";
 	  
 	  wait for Clk_period*2;
-	  
-	  dest <= "001";
+	  dest <= "101";
 	  dataIn <= x"5555";
 	  
-	  wait for Clk_period*4;
-	  
+	  wait for Clk_period*2;
 	  dest <= "110";
 	  dataIn <= x"6666";
 	  
 	  
-	  wait for Clk_period*4;
-	  
+--	  wait for Clk_period*2;	 
 --	  FS <= "00001";
 --	  MDsel <= '0';
 --	  dest <= "000";
 	  
---	  wait for Clk_period*4;
-	  
---	   wait for Clk_period*4;
-	  MDsel <= '1';
+	  wait for Clk_period*2;
 	  dest <= "111";
 	  dataIn <= x"7777";
-
---	  srcB <= "001";
---	  FS <= "00010";
---	  dest <= "000";
 	  
-	  wait for Clk_period*20;
+	  wait for Clk_period*2;
 	  
  --     wait;
    end process;
