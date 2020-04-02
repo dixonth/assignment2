@@ -112,7 +112,7 @@ end component;
            signal C :   STD_LOGIC:= '0';
    
    --Clk
-   constant Clk_period : time := 10 ns;
+   constant Clk_period : time := 5 ns;
 
 begin
 -- Instantiate the Unit Under Test (UUT)
